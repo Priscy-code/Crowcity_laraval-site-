@@ -1,43 +1,108 @@
-<!-- Navbar -->
-<nav id="navbar" class="fixed top-0 w-full z-50 py-6 bg-white/95 backdrop-blur-sm transition-all duration-300 shadow-sm border-b border-gray-100">
-    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        
-        <!-- Logo -->
-        <div class="flex items-center">
-            <img src="{{ asset('images/logo1.png') }}" alt="Logo" class="w-24 h-auto">
-        </div>
-
-        <!-- Desktop Menu -->
-        <div class="hidden md:flex items-center gap-12">
-            <a href="{{ url('/') }}" class="text-gray-700 font-medium hover:text-[#00057b]">Home</a>
-            <a href="{{ url('/solution') }}" class="text-gray-700 font-medium hover:text-[#00057b]">Solutions</a>
-            <a href="{{ url('/aboutus') }}" class="text-gray-700 font-medium hover:text-[#00057b]">About Us</a>
-        </div>
-
-        <!-- CTA Button -->
-        <div class="hidden md:block">
-            <a href="{{ url('/contact') }}" class="px-6 py-3 bg-[#ffc400] text-[#00057b] font-semibold rounded-lg hover:bg-[#ffcd1a] transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                Contact Us
+{{-- Header/Navigation Component --}}
+<header 
+    x-data="{ 
+        scrolled: false, 
+        mobileMenuOpen: false,
+        init() {
+            window.addEventListener('scroll', () => {
+                this.scrolled = window.scrollY > 20;
+            });
+        }
+    }"
+    :class="scrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'"
+    class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    
+    <nav class="max-w-7xl mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+            <!-- Logo -->
+            <a href="{{ route('home') }}" class="flex items-center gap-2 group">
+                <div class="w-10 h-10 bg-[#00057b] rounded-lg flex items-center justify-center group-hover:bg-[#ffc400] transition-colors">
+                    <span class="text-white group-hover:text-[#00057b] font-bold text-xl">C</span>
+                </div>
+                <div>
+                    <div class="font-bold text-lg text-[#00057b]">
+                        <span class="text-[#ffc400]">Crown</span>City
+                    </div>
+                    <div class="text-xs text-gray-600 -mt-1">Technologies</div>
+                </div>
             </a>
-        </div>
 
-        <!-- Mobile Menu Button -->
-        <button id="mobileMenuButton" class="md:hidden w-10 h-10 flex items-center justify-center">
-            <div class="flex flex-col gap-1.5">
-                <span class="w-6 h-0.5 bg-[#00057b] transition-all duration-300"></span>
-                <span class="w-6 h-0.5 bg-[#00057b] transition-all duration-300"></span>
-                <span class="w-6 h-0.5 bg-[#00057b] transition-all duration-300"></span>
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="{{ route('home') }}" 
+                   class="text-gray-700 hover:text-[#ffc400] font-medium transition-colors {{ request()->routeIs('home') ? 'text-[#ffc400]' : '' }}">
+                    Home
+                </a>
+                <a href="{{ route('about') }}" 
+                   class="text-gray-700 hover:text-[#ffc400] font-medium transition-colors {{ request()->routeIs('about') ? 'text-[#ffc400]' : '' }}">
+                    About Us
+                </a>
+                <a href="{{ route('solutions') }}" 
+                   class="text-gray-700 hover:text-[#ffc400] font-medium transition-colors {{ request()->routeIs('solutions') ? 'text-[#ffc400]' : '' }}">
+                    Solutions
+                </a>
+                
+                <a href="{{ route('contact') }}" 
+                   class="px-6 py-2.5 bg-[#00057b] text-white rounded-full font-semibold hover:bg-[#ffc400] hover:text-[#00057b] transition-all shadow-lg hover:shadow-xl">
+                    Contact Us
+                </a>
             </div>
-        </button>
-    </div>
 
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="md:hidden fixed top-[88px] left-0 w-full bg-white border-t border-gray-100 shadow-lg opacity-0 -translate-y-4 pointer-events-none transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col gap-4">
-            <a href="{{ url('/') }}" class="block py-3 px-4 text-gray-700 font-medium hover:text-[#00057b] hover:bg-gray-50 rounded-lg">Home</a>
-            <a href="{{ url('/solution') }}" class="block py-3 px-4 text-gray-700 font-medium hover:text-[#00057b] hover:bg-gray-50 rounded-lg">Solutions</a>
-            <a href="{{ url('/aboutus') }}" class="block py-3 px-4 text-gray-700 font-medium hover:text-[#00057b] hover:bg-gray-50 rounded-lg">About Us</a>
-            <a href="{{ url('/contact') }}" class="block py-3 px-4 text-center bg-[#ffc400] text-[#00057b] font-semibold rounded-lg">Contact Us</a>
+            <!-- Mobile Menu Button -->
+            <button 
+                @click="mobileMenuOpen = !mobileMenuOpen"
+                class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                <svg 
+                    x-show="!mobileMenuOpen"
+                    class="w-6 h-6 text-[#00057b]" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                <svg 
+                    x-show="mobileMenuOpen"
+                    class="w-6 h-6 text-[#00057b]" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                    style="display: none;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
         </div>
-    </div>
-</nav>
+
+        <!-- Mobile Menu -->
+        <div 
+            x-show="mobileMenuOpen"
+            x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 -translate-y-4"
+            x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-150"
+            x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 -translate-y-4"
+            @click.away="mobileMenuOpen = false"
+            class="md:hidden mt-4 py-4 border-t border-gray-200"
+            style="display: none;">
+            <div class="flex flex-col gap-4">
+                <a href="{{ route('home') }}" 
+                   class="text-gray-700 hover:text-[#ffc400] font-medium transition-colors {{ request()->routeIs('home') ? 'text-[#ffc400]' : '' }}">
+                    Home
+                </a>
+                <a href="{{ route('about') }}" 
+                   class="text-gray-700 hover:text-[#ffc400] font-medium transition-colors {{ request()->routeIs('about') ? 'text-[#ffc400]' : '' }}">
+                    About Us
+                </a>
+                <a href="{{ route('solutions') }}" 
+                   class="text-gray-700 hover:text-[#ffc400] font-medium transition-colors {{ request()->routeIs('solutions') ? 'text-[#ffc400]' : '' }}">
+                    Solutions
+                </a>
+                
+                <a href="{{ route('contact') }}" 
+                   class="px-6 py-2.5 bg-[#00057b] text-white rounded-full font-semibold hover:bg-[#ffc400] hover:text-[#00057b] transition-all text-center">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
