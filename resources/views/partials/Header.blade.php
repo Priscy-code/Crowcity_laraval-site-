@@ -16,14 +16,10 @@
         <div class="flex items-center justify-between">
             <!-- Logo -->
             <a href="{{ route('home') }}" class="flex items-center gap-2 group">
-                <div class="w-10 h-10 bg-[#00057b] rounded-lg flex items-center justify-center group-hover:bg-[#ffc400] transition-colors">
-                    <span class="text-white group-hover:text-[#00057b] font-bold text-xl">C</span>
-                </div>
-                <div>
-                    <div class="font-bold text-lg text-[#00057b]">
-                        <span class="text-[#ffc400]">Crown</span>City
-                    </div>
-                    <div class="text-xs text-gray-600 -mt-1">Technologies</div>
+                <div class="flex items-center">
+                    <img src="{{ asset('images/logo1.png') }}" 
+                         alt="CrownCity Technologies Logo" 
+                         class="h-20 w-auto object-contain transition-transform group-hover:scale-105" />
                 </div>
             </a>
 
