@@ -8,13 +8,13 @@
     <!-- Animated background elements -->
     <div class="absolute inset-0 opacity-10">
         <div 
-            x-data="{ animate: false }"
+            x-data="{ animate: true }"
             x-init="animate = true"
             :class="animate && 'hero-blob-1'"
             class="absolute top-20 right-20 w-96 h-96 bg-[#ffc400] rounded-full blur-3xl">
         </div>
         <div 
-            x-data="{ animate: false }"
+            x-data="{ animate: true }"
             x-init="animate = true"
             :class="animate && 'hero-blob-2'"
             class="absolute bottom-20 left-20 w-96 h-96 bg-white rounded-full blur-3xl">
@@ -25,8 +25,8 @@
         <div class="grid md:grid-cols-2 gap-12 items-center">
             <!-- TEXT CONTENT -->
             <div class="text-white"
-                 x-data="{ show: false }"
-                 x-intersect.once="show = true">
+                 x-data="{ show: true }"
+                 x-init="setTimeout(() => show = true, 100)">
                 
                 <span 
                     x-show="show"
@@ -100,8 +100,8 @@
 
             <!-- IMAGE -->
             <div class="relative"
-                 x-data="{ show: false }"
-                 x-intersect.once="show = true">
+                 x-data="{ show: true }"
+                 x-init="setTimeout(() => show = true, 300)">
                 <div class="relative"
                      x-show="show"
                      x-transition:enter="transition ease-out duration-800 delay-200"
@@ -135,7 +135,7 @@
 <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-6">
         <div class="grid md:grid-cols-2 gap-12 items-center"
-             x-data="{ show: false }"
+             x-data="{ show: true }"
              x-intersect.once="show = true">
             
             <!-- Image -->
@@ -230,7 +230,7 @@
 <section id="features" class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-6">
         <div class="text-center mb-16"
-             x-data="{ show: false }"
+             x-data="{ show: true }"
              x-intersect.once="show = true">
             <span 
                 x-show="show"
@@ -288,7 +288,7 @@
 
             @foreach($services as $index => $service)
             <div 
-                x-data="{ show: false }"
+                x-data="{ show: true }"
                 x-intersect.once="show = true"
                 x-show="show"
                 x-transition:enter="transition ease-out duration-800"
@@ -308,7 +308,7 @@
         </div>
 
         <div class="text-center mt-12"
-             x-data="{ show: false }"
+             x-data="{ show: true }"
              x-intersect.once="show = true">
             <a 
                 x-show="show"
@@ -330,7 +330,7 @@
 <section class="py-20 bg-[#00057b] text-white">
     <div class="max-w-7xl mx-auto px-6">
         <div class="text-center mb-16"
-             x-data="{ show: false }"
+             x-data="{ show: true }"
              x-intersect.once="show = true">
             <h2 
                 x-show="show"
@@ -373,7 +373,7 @@
 
             @foreach($reasons as $index => $item)
             <div 
-                x-data="{ show: false }"
+                x-data="{ show: true }"
                 x-intersect.once="show = true"
                 x-show="show"
                 x-transition:enter="transition ease-out duration-800"
@@ -398,7 +398,7 @@
 <section class="py-20 bg-black text-white">
     <div class="max-w-7xl mx-auto px-6">
         <div class="text-center mb-16"
-             x-data="{ show: false }"
+             x-data="{ show: true }"
              x-intersect.once="show = true">
             <h2 
                 x-show="show"
@@ -424,7 +424,7 @@
                 'Docker', 'TypeScript', 'Next.js', 'GraphQL', 'Kubernetes', 'AI/ML'
             ] as $index => $tech)
             <div 
-                x-data="{ show: false }"
+                x-data="{ show: true }"
                 x-intersect.once="show = true"
                 x-show="show"
                 x-transition:enter="transition ease-out duration-800"
@@ -442,7 +442,7 @@
 <!-- CTA SECTION -->
 <section id="contact" class="py-20 bg-[#ffc400]">
     <div class="max-w-4xl mx-auto px-6 text-center"
-         x-data="{ show: false }"
+         x-data="{ show: true }"
          x-intersect.once="show = true">
         <h2 
             x-show="show"

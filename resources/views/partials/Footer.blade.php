@@ -4,13 +4,12 @@
     <div class="max-w-7xl mx-auto px-6 py-16">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             {{-- Company Info --}}
-            <div x-data="{ show: false }" 
-                 x-intersect="show = true"
+            <div x-data="{ show: true }" 
+                 x-intersect.once="show = true"
                  x-show="show"
                  x-transition:enter="transition ease-out duration-600"
                  x-transition:enter-start="opacity-0 translate-y-5"
-                 x-transition:enter-end="opacity-100 translate-y-0"
-                 style="display: none;">
+                 x-transition:enter-end="opacity-100 translate-y-0">
                 <h3 class="text-2xl font-bold mb-4">
                     <span class="text-[#ffc400]">CrownCity</span> Technologies
                 </h3>
@@ -58,13 +57,12 @@
             </div>
 
             {{-- Quick Links --}}
-            <div x-data="{ show: false }" 
-                 x-intersect="show = true"
+            <div x-data="{ show: true }" 
+                 x-intersect.once="show = true"
                  x-show="show"
                  x-transition:enter="transition ease-out duration-600 delay-100"
                  x-transition:enter-start="opacity-0 translate-y-5"
-                 x-transition:enter-end="opacity-100 translate-y-0"
-                 style="display: none;">
+                 x-transition:enter-end="opacity-100 translate-y-0">
                 <h4 class="text-xl font-bold mb-4 text-[#ffc400]">Quick Links</h4>
                 <ul class="space-y-3">
                     <li>
@@ -99,38 +97,37 @@
             </div>
 
             {{-- Services --}}
-            <div x-data="{ show: false }" 
-                 x-intersect="show = true"
+            <div x-data="{ show: true }" 
+                 x-intersect.once="show = true"
                  x-show="show"
                  x-transition:enter="transition ease-out duration-600 delay-200"
                  x-transition:enter-start="opacity-0 translate-y-5"
-                 x-transition:enter-end="opacity-100 translate-y-0"
-                 style="display: none;">
+                 x-transition:enter-end="opacity-100 translate-y-0">
                 <h4 class="text-xl font-bold mb-4 text-[#ffc400]">Our Services</h4>
                 <ul class="space-y-3">
                     <li>
-                        <a href="{{ route('solutions', ['service' => 0]) }}" 
+                        <a href="{{ route('solutions') }}#service-0" 
                            class="text-white/80 hover:text-[#ffc400] transition-colors duration-300 flex items-center gap-2">
                             <span class="text-[#ffc400]">›</span>
                             Custom Software Development
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('solutions', ['service' => 1]) }}" 
+                        <a href="{{ route('solutions') }}#service-1" 
                            class="text-white/80 hover:text-[#ffc400] transition-colors duration-300 flex items-center gap-2">
                             <span class="text-[#ffc400]">›</span>
                             Enterprise Solutions
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('solutions', ['service' => 2]) }}" 
+                        <a href="{{ route('solutions') }}#service-2" 
                            class="text-white/80 hover:text-[#ffc400] transition-colors duration-300 flex items-center gap-2">
                             <span class="text-[#ffc400]">›</span>
                             IT Consulting
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('solutions', ['service' => 3]) }}" 
+                        <a href="{{ route('solutions') }}#service-3" 
                            class="text-white/80 hover:text-[#ffc400] transition-colors duration-300 flex items-center gap-2">
                             <span class="text-[#ffc400]">›</span>
                             E-Commerce Platforms
@@ -140,13 +137,12 @@
             </div>
 
             {{-- Contact Info --}}
-            <div x-data="{ show: false }" 
-                 x-intersect="show = true"
+            <div x-data="{ show: true }" 
+                 x-intersect.once="show = true"
                  x-show="show"
                  x-transition:enter="transition ease-out duration-600 delay-300"
                  x-transition:enter-start="opacity-0 translate-y-5"
-                 x-transition:enter-end="opacity-100 translate-y-0"
-                 style="display: none;">
+                 x-transition:enter-end="opacity-100 translate-y-0">
                 <h4 class="text-xl font-bold mb-4 text-[#ffc400]">Contact Us</h4>
                 <ul class="space-y-4">
                     <li class="flex items-start gap-3">
@@ -183,14 +179,13 @@
     {{-- Newsletter Section --}}
     <div class="border-t border-white/10">
         <div class="max-w-7xl mx-auto px-6 py-8">
-            <div x-data="{ show: false, email: '', message: '' }" 
-                 x-intersect="show = true"
+            <div x-data="{ show: true, email: '', message: '' }" 
+                 x-intersect.once="show = true"
                  x-show="show"
                  x-transition:enter="transition ease-out duration-600"
                  x-transition:enter-start="opacity-0 translate-y-5"
                  x-transition:enter-end="opacity-100 translate-y-0"
-                 class="flex flex-col md:flex-row items-center justify-between gap-6"
-                 style="display: none;">
+                 class="flex flex-col md:flex-row items-center justify-between gap-6">
                 <div class="text-center md:text-left">
                     <h4 class="text-xl font-bold text-[#ffc400] mb-2">Stay Updated</h4>
                     <p class="text-white/80">
@@ -216,18 +211,18 @@
                         message = 'Subscription failed. Please try again.';
                         setTimeout(() => message = '', 3000);
                     })
-                " class="flex gap-2 w-full md:w-auto">
+                " class="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
                     <input 
                         type="email" 
                         x-model="email"
                         required
                         placeholder="Enter your email"
                         class="px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-[#ffc400] flex-1 md:w-64" />
-                    <button type="submit" class="px-6 py-3 bg-[#ffc400] text-[#00057b] font-bold rounded-lg hover:bg-[#ffb000] transition-colors">
+                    <button type="submit" class="px-6 py-3 bg-[#ffc400] text-[#00057b] font-bold rounded-lg hover:bg-[#ffb000] transition-colors whitespace-nowrap">
                         Subscribe
                     </button>
                 </form>
-                <p x-show="message" x-text="message" class="text-[#ffc400] text-sm"></p>
+                <p x-show="message" x-text="message" class="text-[#ffc400] text-sm mt-2"></p>
             </div>
         </div>
     </div>
@@ -237,7 +232,7 @@
         <div class="max-w-7xl mx-auto px-6 py-6">
             <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-white/70 text-sm">
                 <p>© {{ date('Y') }} CrownCity Technologies Limited. All rights reserved.</p>
-                <div class="flex gap-6">
+                <div class="flex flex-wrap gap-6 justify-center">
                     <a href="{{ route('privacy') }}" class="hover:text-[#ffc400] transition-colors">
                         Privacy Policy
                     </a>
@@ -252,7 +247,3 @@
         </div>
     </div>
 </footer>
-
-@push('scripts')
-<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-@endpush
